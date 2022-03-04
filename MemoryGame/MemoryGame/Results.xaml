@@ -1,0 +1,91 @@
+﻿<Window x:Class="MemoryGame.Results"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemoryGame"
+        mc:Ignorable="d"
+        Title="Results" SizeToContent="Width" MinWidth="350" Height="500" 
+         ResizeMode="NoResize" WindowStyle="None" Background="#85480F" WindowStartupLocation="CenterScreen" >
+    
+    <Window.Resources>
+       
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" Height="40">
+
+                <TextBlock Text="Results" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Ravie" />
+                <TextBlock Text="Level:medium" Name="LevelTB" FontSize="15" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Ravie" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0">
+                <Button Width="32" Height="28"  Style="{StaticResource CloseButton}" Content="x" BorderBrush="Red" BorderThickness="2" FontSize="26" FontFamily="Arial Black" Click="Close_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush Stretch="Fill" ImageSource="resources/board-v2.png"></ImageBrush>
+            </Grid.Background>
+            <Border Grid.Row="0" Padding="30,20,40,10">
+                <ListView x:Name="resultsLV" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Grid Width="Auto">
+                                <Grid.Resources >
+                                    <Style TargetType="Border" >
+                                        <Setter Property="Padding" Value="30,15,40,10" />
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.Background>
+                                    <ImageBrush Stretch="Fill" ImageSource="resources/list-item.png"/>
+                                </Grid.Background>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0">
+                                    <TextBlock Text="{Binding Username}" TextWrapping="Wrap" FontFamily="Ravie" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border  Grid.Column="1">
+                                    <TextBlock Text="{Binding Score}" TextWrapping="Wrap"  FontFamily="Ravie" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+
+            <Button Grid.Row="1" Style="{StaticResource ImageButton}" Cursor="Hand" Click="Home_Click" BorderBrush="Transparent">
+
+                <Button.Background>
+                <ImageBrush ImageSource="/Resources/back-arrow.png" Stretch="Uniform" />
+            </Button.Background>
+
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,59 @@
+﻿<Window x:Class="MemoryGame.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        xmlns:local="clr-namespace:MemoryGame"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="#FFD6B8A3"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="1" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" Height="40">
+              
+                <TextBlock Text="Game" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Ravie" />
+            </StackPanel>
+            <Thumb Opacity="0" Background="Transparent" Foreground="{x:Null}" DragDelta="Thumb_OnDragDelta" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0">
+                <Button Width="32" Height="28"  Style="{StaticResource CloseButton}" Content="x" FontSize="16" FontFamily="Arial Black" Click="Close_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Background="Gray"/>
+        <DockPanel Grid.Row="2">
+
+        <DockPanel.Background>
+            <ImageBrush ImageSource="/resources/background.jpg"></ImageBrush>
+        </DockPanel.Background>
+
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--<Label x:Name="Time" Content="{Binding Path=ElapsedTime,  StringFormat=Elapsed Time: {0}, diag:PresentationTraceSources.TraceLevel=High}" FontFamily="Ravie" Grid.Column="0" Foreground="White"></Label>-->
+            <Label x:Name="Time" Content="Number of attempts:" FontFamily="Ravie" Grid.Column="0" Foreground="#FF0C0606"></Label>
+                <Label x:Name="Attempts" FontSize="16px" Content="{Binding Path=NumOfAttempts}" FontFamily="Ravie" DockPanel.Dock="Right" Grid.Column="1" Foreground="Red" HorizontalAlignment="Left"></Label>
+
+        </Grid>
+        <Grid x:Name="MemoryGrid">
+            <Grid.Resources >
+                <Style TargetType="Border" >
+                    <Setter Property="Padding" Value="5,5,5,5" />
+                </Style>
+            </Grid.Resources>
+        </Grid>
+
+
+
+       
+    </DockPanel>
+    </Grid>
+</Window>
